@@ -1,17 +1,18 @@
 const express=require("express")
+const path=require("path")
 
 const app=express()
 
-app.get('/',(req,res)=>{
-    res.send('<h2>hello, this is root!!?</h2>')
-})
+// app.get('/',(req,res)=>{
+//    // res.send('<h2>hello, this is root!!?</h2>')
+//    res.sendFile(path.join(__dirname,'public','index.html'))
+// })
+
+//set static folder
+app.use(express.static(path.join(__dirname,'public')))
+
 
 // using port 5000 by default
-//comment added in experimental-1 branch!
-//one more comment in the experimental-1 branch
-
-//add comment in the master branch
-
 
 const PORT=process.env.PORT || 5000
 
