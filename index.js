@@ -1,5 +1,6 @@
 const express=require("express")
 const path=require("path")
+const members=require("./Members")
 
 const app=express()
 
@@ -8,8 +9,21 @@ const app=express()
 //    res.sendFile(path.join(__dirname,'public','index.html'))
 // })
 
+const logger=(req,res,next)=>{
+    console.log("logging")
+    next()
+}
+
+app.use(logger)
+
+
+app.get('/api/members',(req,res) => {
+    res.json(members);
+    //res.send("hello");
+})
+
 //set static folder
-app.use(express.static(path.join(__dirname,'public')))
+//app.use(express.static(path.join(__dirname,'public')))
 
 
 // using port 5000 by default
