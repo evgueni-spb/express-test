@@ -20,4 +20,8 @@ router.get('/:id',(req,res)=> {
 }
 )
 
+router.post('/',(req,res)=>{
+    res.send(req.body)
+})
+
 module.exports=router

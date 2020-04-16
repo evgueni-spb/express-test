@@ -2,7 +2,12 @@ const express=require("express")
 const path=require("path")
 const logger=require("./middleware/logger")
 
+
 const app=express()
+
+//use parser middleware
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 
 // app.get('/',(req,res)=>{
 //    // res.send('<h2>hello, this is root!!?</h2>')
@@ -12,6 +17,8 @@ const app=express()
 app.use('/api/members',require('./router/api/members'))
 
 app.use(logger)
+
+
 
 
 
