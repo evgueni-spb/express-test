@@ -35,7 +35,10 @@ router.post('/',(req,res)=>{
     }
 
     members.push(newMember)
-    res.json(members)
+    //send response for REST
+ //   res.json(members) 
+ //send response for UI
+    res.redirect('/')
 })
 
 //update member

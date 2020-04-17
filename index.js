@@ -1,6 +1,8 @@
 const express=require("express")
 const path=require("path")
+const exphbs=require("express-handlebars")
 const logger=require("./middleware/logger")
+const members=require("./Members")
 
 
 const app=express()
@@ -8,6 +10,11 @@ const app=express()
 //use parser middleware
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
+
+//use template middleware
+app.engine('handlebars',exphbs({defaultLayout:'main'}))
+app.set('view engine','handlebars')
+
 
 // app.get('/',(req,res)=>{
 //    // res.send('<h2>hello, this is root!!?</h2>')
@@ -18,12 +25,13 @@ app.use('/api/members',require('./router/api/members'))
 
 app.use(logger)
 
-
-
-
-
 //set static folder
 //app.use(express.static(path.join(__dirname,'public')))
+
+app.get('/',(req,res) => res.render('index',{title:'Member APP',members}))
+
+
+
 
 
 // using port 5000 by default
